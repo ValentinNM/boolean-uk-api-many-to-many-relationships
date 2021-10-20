@@ -20,6 +20,7 @@ model Patient {
   firstName   String    @db.VarChar(255)
   lastName    String    @db.VarChar(255)
   dateOfBirth DateTime
+  appointment Appointment[]
 }
 
 model Appointment {
@@ -27,6 +28,12 @@ model Appointment {
   practiceName  String    @db.VarChar(255)
   reason        String    @db.VarChar(255)
   dateTime      DateTime
+  patient       Patient @relation(fields: [patientId], references: [id])
+  patientId     Int
 }
 
 //Realtionships as follows: https://whimsical.com/KSCxqwf7Jn9Mcov6XmkeiE
+
+// model DoctorsAndAppointments {
+
+// }

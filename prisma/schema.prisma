@@ -13,6 +13,7 @@ model Doctor {
   firstName   String    @db.VarChar(255)
   lastName    String    @db.VarChar(255)
   specialty   String    @db.VarChar(255)
+  appointments AppointmentsOnDoctors[]
 }
 
 model Patient {
@@ -20,7 +21,7 @@ model Patient {
   firstName   String    @db.VarChar(255)
   lastName    String    @db.VarChar(255)
   dateOfBirth DateTime
-  appointment Appointment[]
+  appointments Appointment[]
 }
 
 model Appointment {
@@ -30,10 +31,16 @@ model Appointment {
   dateTime      DateTime
   patient       Patient @relation(fields: [patientId], references: [id])
   patientId     Int
+  doctors        AppointmentsOnDoctors[]
 }
 
 //Realtionships as follows: https://whimsical.com/KSCxqwf7Jn9Mcov6XmkeiE
 
-// model DoctorsAndAppointments {
+model AppointmentsOnDoctors {
+  appointment     Appointment @relation(fields: [appointmentId], references: [id])
+  appointmentId   Int
+  doctor          Doctor @relation(fields: [doctorId], references: [id])
+  doctorId        Int
 
-// }
+  @@id([appointmentId, doctorId])
+}

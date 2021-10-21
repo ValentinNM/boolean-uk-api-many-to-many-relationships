@@ -8,6 +8,10 @@ const app = express()
 
 /* SETUP MIDDLEWARE */
 
+const appointmentRouter = require("./routes/appointment/router")
+const doctorRouter = require("./routes/doctor/router")
+const patientRouter = require("./routes/patient/router")
+
 app.disable("x-powered-by")
 
 app.use(cors())
@@ -16,6 +20,10 @@ app.use(express.urlencoded({ extended: true }))
 app.use(morgan("dev"))
 
 /* SETUP ROUTES */
+
+app.use("/appointment", appointmentRouter);
+app.use("doctor", doctorRouter);
+app.use("/patient", patientRouter);
 
 app.get("*", (req, res) => {
   res.json({ ok: true })

@@ -1,18 +1,19 @@
 require("dotenv").config()
 
 const express = require("express")
-const cors = require("cors")
-const morgan = require("morgan")
+const cors = require("cors") // FOR SECURITY (find on slides)
+const morgan = require("morgan") 
 
 const app = express()
 
 /* SETUP MIDDLEWARE */
 
 const appointmentRouter = require("./routes/appointment/router")
+// const doctorRouter = require("./routes/doctor/router")
 const doctorRouter = require("./routes/doctor/router")
 const patientRouter = require("./routes/patient/router")
 
-app.disable("x-powered-by")
+app.disable("x-powered-by") 
 
 app.use(cors())
 app.use(express.json())
@@ -21,9 +22,9 @@ app.use(morgan("dev"))
 
 /* SETUP ROUTES */
 
-app.use("/appointment", appointmentRouter);
-app.use("doctor", doctorRouter);
-app.use("/patient", patientRouter);
+app.use("/appointments", appointmentRouter);
+app.use("/doctors", doctorRouter);
+app.use("/patients", patientRouter);
 
 app.get("*", (req, res) => {
   res.json({ ok: true })

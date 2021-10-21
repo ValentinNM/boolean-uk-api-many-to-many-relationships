@@ -1,4 +1,5 @@
-import { prisma } from "../../utils/db"
+const {prisma} = require("../../utils/db")
+
 
 
 module.exports = { }

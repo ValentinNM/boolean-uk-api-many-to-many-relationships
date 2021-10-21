@@ -1,4 +1,10 @@
-const {prisma} = require("../../utils/db")
+// const {prisma} = require("../../utils/db")
 
+// async function getAll(req, res) { 
 
-module.exports = { }
+//     try{ 
+//         const allDoctors = await prisma.
+//     }
+// }
+
+// module.exports = { }
